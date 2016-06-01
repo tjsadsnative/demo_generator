@@ -1,3 +1,4 @@
+# This is a Adsnative demo generator tool
 import urllib2
 import webbrowser
 import fileinput
