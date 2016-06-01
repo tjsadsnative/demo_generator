@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+<title>Page Generation</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<h2 style="text-align:center;">
+Generate Demo Page
+</h2>
+<style>
+	.myButton {
+	
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
+	background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+	background:-webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+	background:-o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+	background:-ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+</style>
+<p>Please use the form below to generate a demo page using the site URL and the ZID (both are required)</p>
+
+<p>
+Site URL:&nbsp;<input type="text" id="siteName" name="siteName"><br />
+PlacementID (ZID):&nbsp;<input type="text" id="placementId" name="placementId"><br />
+</p>
+<div id="submit" class="myButton" onclick="sendGenerateDemoRequest(siteName, placementId)">Generate</div>
+<script>
+function sendGenerateDemoRequest(siteName, placementId) {
+  $.ajax({
+    url: "http://127.0.0.1:5000/generateDemo?siteName=" + siteName + "&zid=" + placementId,
+    data: null,
+    success: function(result) {
+      console.log("Result : " + result);
+      /* Fetch the url from the result and display to the user */
+      var demoURL = result["demoUrl"];
+      
+    },
+    dataType: "application/json"
+  });
+}
+</script>
+<script>
+$('.siteName').click(function() {
+   var siteName = $('.siteName').val()
+ });
+ 
+ $('.placementId').click(function() {
+   var placementId = $('.placementId').val()
+ });
+</script>
+</body>
+</html>

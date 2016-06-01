@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<head>	<title>Site Scraper and Script Injector</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename="style.css") }}">
+</head>
+<body>
+{% if website %}
+    <h1 class="domain">The site is {{ website }}</h1>
+{% else %}
+    <h1 class="error">Please enter a domain name</h1>
+{% endif %}
+</body>
+</html>
